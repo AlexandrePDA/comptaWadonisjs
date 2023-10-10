@@ -1,0 +1,16 @@
+@layout('app')
+@section('content')
+  
+    @unless(auth.user) 
+    <form action="{{route('register')}}" method="POST" class="p-8">
+        <input type="email" name="email" class="border-black border">
+        <input type="password" name="password" class="border-black border">
+        <input type="password" name="password_confirmation" class="border-black border">
+        <button type="submit" class="bg-black text-white rounded">s'inscrire</button>
+    </form>
+    @end
+
+    {{inspect(flashMessages)}}
+
+@end
+

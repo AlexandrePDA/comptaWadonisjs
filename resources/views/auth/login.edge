@@ -1,0 +1,15 @@
+@layout('app')
+@section('content')
+  
+  @unless(auth.user)
+    <form action="{{route('login')}}" method="POST" class="p-8">
+        <input type="email" name="email" class="border-black border">
+        <input type="password" name="password" class="border-black border">
+        <button type="submit" class="bg-black text-white rounded">se connecter</button>
+    </form>
+  @end
+
+    {{inspect(flashMessages)}}
+
+@end
+
