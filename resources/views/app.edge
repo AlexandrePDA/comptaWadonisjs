@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home Page</title>
     @entryPointStyles('app')
     @entryPointScripts('app')
 </head>
 
 <body>
-    <ul>
-        @if(!auth.user)
-        <li>
-            <a href="/login">Login</a>
-        </li>
-        @else
-        <li>
-            Welcome {{auth.user.email}}
-            <a href="/logout">Logout</a>
-        </li>
-        @end
-    </ul>
+    <nav>
+        <div class="bg-slate-950 mx-auto w-screen h-16 flex items-center">
+            <div class="flex items-center justify-between container px-4 mx-auto">
+                <a href="/" class="text-white">🦸🏻‍♀️ COMPTA</a>
+                <div class="flex items-center gap-4">
+                    @if(!auth.user)
+                    <button
+                        class="px-6 py-2 mr-4 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                        <a href="/register">S'inscrire</a>
+                    </button>
+                    <button
+                        class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                        <a href="/login">Se connecter</a>
+                    </button>
+                    
+                    @else
+                    <p class="text-white">
+                        Welcome {{auth.user.email}}
+                    </p>
+                    <button
+                        class="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                        <a href="/logout">Déconnexion</a>
+                    </button>
+                    @end
+                </div>
+            </div>
+        </div>
+    </nav>
     @!section('content')
 </body>
 

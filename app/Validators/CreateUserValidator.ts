@@ -39,5 +39,8 @@ export default class CreateUserValidator {
    * }
    *
    */
-  public messages: CustomMessages = {}
+  public messages: CustomMessages = {
+    'email.required': 'email est requis',
+    'password.required': 'password est requis',
+  }
 }

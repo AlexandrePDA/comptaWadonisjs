@@ -11,20 +11,26 @@ export default class AuthController {
     return view.render('auth/register')
   }
 
+  public async showDashboard({ view }: HttpContextContract) {
+    return view.render('dashboard')
+  }
+
   public async login({ auth, request, response }: HttpContextContract) {
     const { email, password } = request.all()
     await auth.attempt(email, password)
-    return response.redirect().back()
+    if (auth.user) {
+      return response.redirect().toRoute('dashboard')
+    }
   }
 
-  public async register({ auth, request, response }: HttpContextContract) {
+  public async register({ request, response }: HttpContextContract) {
     const payload = await request.validate(CreateUserValidator)
     await User.create(payload)
-    return response.redirect().back()
+    return response.redirect().toRoute('login')
   }
 
   public async logout({ auth, response }: HttpContextContract) {
     await auth.logout()
-    return response.redirect().back()
+    return response.redirect().toRoute('/')
   }
 }

@@ -22,12 +22,13 @@ import Route from '@ioc:Adonis/Core/Route'
 import User from 'App/Models/User'
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('home')
 })
 
 Route.get('/login', 'AuthController.showLoginForm')
 Route.get('/register', 'AuthController.showRegisterForm')
 Route.get('/logout', 'AuthController.logout').as('logout')
+Route.get('/dashboard', 'AuthController.showDashboard').middleware('auth').as('dashboard')
 
 Route.post('/login', 'AuthController.login').as('login')
 Route.post('/register', 'AuthController.register').as('register')
