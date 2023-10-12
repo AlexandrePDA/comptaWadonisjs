@@ -1,0 +1,72 @@
+@layout('app')
+@section('content')
+
+
+<div class="bg-slate-950 w-screen h-screen flex items-center justify-center -mt-24">
+
+    <div class="container mx-auto text-white p-4">
+
+        <section class="max-w-xl p-6 mx-auto  rounded-md shadow-md bg-gray-800">
+
+        <div class="flex items-center justify-between">
+                <h2 class="text-lg font-semibold text-white">Mission avec un nouvel client  🎉</h2>
+                <button>
+                    <a href="/dashboard">
+                        X
+                    </a>
+                </button>
+            </div>
+
+            <form action="{{route('addClient')}}" method="POST">
+                <div class="flex flex-col gap-6 mt-4 ">
+                    <div>
+                        <label class="text-gray-200" for="name"> Client </label>
+                        <input id="name" type="text" placeholder="name" name="name"
+                            class="block w-full px-4 py-2 mt-2 h-12  border  rounded-md bg-gray-800 text-gray-300 border-gray-600  focus:ring-blue-300 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring">
+                    </div>
+
+                    <div>
+                        <label class="text-gray-200" for="month">Mois </label>
+                        <select
+                            class="block w-full px-4 py-2 mt-2 h-12  border  rounded-md bg-gray-800 text-gray-300 border-gray-600  focus:ring-blue-300 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring"
+                            name="month" id="month">
+                            <option value="Janvier">Janvier</option>
+                            <option value="Fevrier">Février</option>
+                            <option value="Mars">Mars</option>
+                            <option value="Avril">Avril</option>
+                            <option value="Mai">Mai</option>
+                            <option value="Juin">Juin</option>
+                            <option value="Juillet">Juillet</option>
+                            <option value="Aout">Août</option>
+                            <option value="Septembre">Septembre</option>
+                            <option value="Octobre">Octobre</option>
+                            <option value="Novembre">Novembre</option>
+                            <option value="Decembre">Décembre</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-gray-200" for="somme">Somme</label>
+                        <input id="somme" type="number" placeholder="112" name="somme"
+                            class="block w-full px-4 py-2 mt-2 h-12  border  rounded-md bg-gray-800 text-gray-300 border-gray-600  focus:ring-blue-300 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring">
+                    </div>
+
+                  
+
+                </div>
+
+                <div class="flex justify-end mt-6">
+                    <button
+                        type="submit"
+                        class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Enregistrer
+                    </button>
+                </div>
+            </form>
+        </section>
+
+
+    </div>
+</div>
+
+{{inspect(flashMessages)}}
+@end

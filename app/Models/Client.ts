@@ -6,8 +6,14 @@ export default class Client extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column({})
+  public user_id: number
+
   @column()
   public name: string
+
+  @column()
+  public tag: string
 
   @column()
   public month: string

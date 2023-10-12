@@ -2,8 +2,29 @@
 @section('content')
 
 
-<div class="bg-slate-950 w-screen h-screen ">
-    <h1>DASHBOARD</h1>
+
+<div class="bg-slate-950 w-screen h-screen">
+
+
+
+
+    <div class="container mx-auto text-white p-4 flex justify-between">
+
+        <h1>DASHBOARD</h1>
+
+        <div>
+
+            <button
+                class="px-6 py-2 mr-4 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                <a href="/showAddClient">Add client</a>
+            </button>
+
+            <button
+                class="px-6 py-2  font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                <a href="/showAddMission">Add mission</a>
+            </button>
+        </div>
+    </div>
 </div>
 
 

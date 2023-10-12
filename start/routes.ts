@@ -29,7 +29,12 @@ Route.get('/login', 'AuthController.showLoginForm')
 Route.get('/register', 'AuthController.showRegisterForm')
 Route.get('/logout', 'AuthController.logout').as('logout')
 Route.get('/dashboard', 'AuthController.showDashboard').middleware('auth').as('dashboard')
+Route.get('showAddClient', 'ClientsController.showAddClient').middleware('auth')
+Route.get('showAddMission', 'ClientsController.showAddMission').middleware('auth')
+Route.get('showHistoryGeneral', 'ClientsController.showHistoryGeneral').middleware('auth')
 
+Route.post('/addClient', 'ClientsController.addClient').middleware('auth').as('addClient')
+Route.post('/addMission', 'ClientsController.addMission').middleware('auth').as('addMission')
 Route.post('/login', 'AuthController.login').as('login')
 Route.post('/register', 'AuthController.register').as('register')
 
