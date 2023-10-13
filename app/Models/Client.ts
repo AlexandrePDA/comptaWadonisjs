@@ -13,9 +13,6 @@ export default class Client extends BaseModel {
   public name: string
 
   @column()
-  public tag: string
-
-  @column()
   public month: string
 
   @column()
