@@ -36,7 +36,7 @@
 
                                         <th scope="col"
                                             class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Somme
+                                            Somme brut
                                         </th>
 
 
@@ -52,20 +52,19 @@
                                 @each(client in reversedClients)
 
 
-                                <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                                <tbody class=" divide-y  divide-gray-700 bg-gray-900">
                                     <tr>
                                         <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                             <div>
-                                                <h2 class="font-medium text-gray-800 dark:text-white ">{{client.month}}
+                                                <h2 class="font-medium text-gray-400  ">{{client.month}}
                                                 </h2>
 
                                             </div>
                                         </td>
                                         <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div>
-                                                <h4 class="text-gray-700 dark:text-gray-200 overflow-hidden">
-                                                    {{client.name}}</h4>
-
+                                            <div
+                                                class="inline px-3 py-1 text-sm font-normal rounded-full text-white gap-x-2 bg-gray-800">
+                                                {{client.name}}
                                             </div>
 
                                         </td>
@@ -73,7 +72,7 @@
 
                                         <td class="px-4 py-4 text-sm whitespace-nowrap">
                                             <div
-                                                class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                                                class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-gray-800">
                                                 {{client.somme}}
                                             </div>
                                         </td>
@@ -86,19 +85,19 @@
                                     <tr>
                                         <th scope="col"
                                             class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Total
+                                           🚨 Total
                                         </th>
 
                                         <th scope="col"
                                             class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Mission : {{totalClients}}
+                                            Mission : <span class="text-pink-400"> {{totalClients}}</span>
                                         </th>
 
 
 
                                         <th scope="col"
                                             class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                            Somme : {{totalSomme}}
+                                            Somme brut : <span class="text-pink-400"> {{totalSomme}}</span>
                                         </th>
 
 

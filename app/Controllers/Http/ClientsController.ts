@@ -19,7 +19,21 @@ export default class ClientsController {
     const totalClients = clients.length
     const totalSomme = clients.reduce((acc, client) => acc + client.somme, 0)
     const reversedClients = clients.slice().reverse()
-    return view.render('history', { user, totalClients, totalSomme, reversedClients })
+
+    const formattedClients = reversedClients.map((client) => {
+      const [year, month, day] = client.month.split('-')
+      return {
+        name: client.name,
+        month: `${day}-${month}-${year}`,
+        somme: client.somme,
+      }
+    })
+    return view.render('history', {
+      user,
+      totalClients,
+      totalSomme,
+      reversedClients: formattedClients,
+    })
   }
 
   public async addMission({ auth, request, response }: HttpContextContract) {

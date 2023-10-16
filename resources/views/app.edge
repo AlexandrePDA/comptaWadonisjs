@@ -37,14 +37,18 @@
                 <a href="/" class="text-white">🦸🏻‍♀️ BillManager</a>
                 <div class="flex items-center gap-4">
                     @if(!auth.user)
+                    <a href="/register">
                     <button
                         class="px-6 py-2 mr-4 font-medium tracking-wide text-white transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                        <a href="/register">Inscription</a>
+                        Inscription
                     </button>
+                    </a>
+                    <a href="/login">
                     <button
                         class="px-6 py-2 font-medium tracking-wide text-white transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                        <a href="/login">Connexion</a>
+                        Connexion
                     </button>
+                    </a>
 
                     @else
                     <div class="relative inline-block ">
@@ -53,7 +57,7 @@
 
                             <button id="toggle"
                                 class="flex items-center gap-2 relative z-10  p-2   border border-transparent rounded-md text-white focus:border-blue-500  focus:ring-opacity-40  focus:ring-blue-400 focus:ring bg-gray-800 focus:outline-none">
-                                <svg class="w-5 h-5 mx-1 text-pink-600" viewBox="0 0 24 24" fill="none"
+                                <svg class="w-5 h-5 mx-1 text-pink-400" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z"
@@ -115,7 +119,7 @@
 
 
 
-                            <a href="#"
+                            <a href="/showClients"
                                 class="flex items-center p-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300  hover:bg-gray-700 hover:text-white">
                                 <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -154,7 +158,7 @@
 
                             <hr class="border-gray-700 ">
 
-                            <a href="#"
+                            <a href="mailto:a.pires130@gmail.com"
                                 class="flex items-center p-3 text-sm  capitalize transition-colors duration-300 transform text-gray-300  hover:bg-gray-700 hover:text-white">
                                 <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -168,7 +172,7 @@
                                 </span>
                             </a>
 
-                            <a href="#"
+                            <a href="/settings"
                                 class="flex items-center p-3 text-sm capitalize transition-colors duration-300 transform text-gray-300  hover:bg-gray-700 hover:text-white">
                                 <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -206,6 +210,22 @@
 
 
     @!section('content')
+
+   <footer class="bg-slate-950">
+    <div class="container px-6 py-12 mx-auto">
+        
+
+        <hr class="my-10 border-gray-200 dark:border-gray-700" />
+
+        <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+            <p class="text-sm text-gray-500">© Copyright 2023. All Rights Reserved.</p>
+
+            <div class="flex mt-3 -mx-2 sm:mt-0">
+                <a href="https://www.linkedin.com/in/alexandre-pires-de-almeida" class="mx-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Made by Alexandre 🎉</a>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 
 

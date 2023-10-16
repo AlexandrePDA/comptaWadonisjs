@@ -1,5 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Client from 'App/Models/Client'
+import DeleteValidator from 'App/Validators/DeleteValidator'
+import TaxValidator from 'App/Validators/TaxValidator'
 
 export default class DashboardController {
   public async getData({ auth, response }: HttpContextContract) {
@@ -53,5 +55,60 @@ export default class DashboardController {
     const sortedDataValues = sortedKeys.map((label) => accumulatedData.get(label)!)
 
     return response.json({ labels: sortedKeys, dataValues: sortedDataValues })
+  }
+
+  public showSettings({ view }: HttpContextContract) {
+    return view.render('settings')
+  }
+
+  public async addTax({ auth, request, view }: HttpContextContract) {
+    const payload = await request.validate(TaxValidator)
+    const user = await auth.authenticate()
+    user.taxe = payload.taxe
+    await user.save()
+    return view.render('settings', { user })
+  }
+
+  public async delete({ view, auth, request }: HttpContextContract) {
+    const payload = await request.validate(DeleteValidator)
+    const user = await auth.authenticate()
+
+    if (payload.delete !== `supprimer/${user.name}`) {
+      const error = 'input incorrect'
+      return view.render('settings', { error })
+    }
+    await auth.logout()
+    await user.delete()
+    return view.render('home')
+  }
+
+  public async showClients({ view, auth }: HttpContextContract) {
+    const user = await auth.authenticate()
+    const clients = await Client.query().where('user_id', user.id)
+
+    const clientData = new Map<string, { somme: number; dates: string[] }>()
+
+    clients.forEach((client) => {
+      const key = client.name
+
+      if (clientData.has(key)) {
+        clientData.get(key)!.somme += client.somme
+        clientData.get(key)!.dates.push(client.month)
+      } else {
+        clientData.set(key, { somme: client.somme, dates: [client.month] })
+      }
+    })
+
+    const formattedClientData = Array.from(clientData.entries()).map(([name, { somme, dates }]) => {
+      return {
+        name,
+        somme,
+        dates: dates.map((date) => {
+          const [year, month] = date.split('-')
+          return `${month}-${year}`
+        }),
+      }
+    })
+    return view.render('showClients', { clientData: formattedClientData })
   }
 }

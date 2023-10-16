@@ -19,6 +19,16 @@ import Chart from 'chart.js/auto'
         datasets: [
           {
             data: dataValues,
+            backgroundColor: [
+              'rgba(231, 76, 60)',
+              'rgba(155, 89, 182)',
+              'rgba(52, 152, 219)',
+              'rgba(26, 188, 156)',
+              'rgba(241, 196, 15)',
+              'rgba(236, 240, 241)',
+              'rgba(41, 128, 185)',
+              'rgba(211, 84, 0)',
+            ],
           },
         ],
       },
@@ -35,6 +45,16 @@ import Chart from 'chart.js/auto'
           {
             label: 'Encaissement par mois',
             data: valuesByMonth,
+            backgroundColor: [
+              'rgba(231, 76, 60)',
+              'rgba(155, 89, 182)',
+              'rgba(52, 152, 219)',
+              'rgba(26, 188, 156)',
+              'rgba(241, 196, 15)',
+              'rgba(236, 240, 241)',
+              'rgba(41, 128, 185)',
+              'rgba(211, 84, 0)',
+            ],
           },
         ],
       },
