@@ -14,22 +14,23 @@
                 </span>
                 !
             </h1>
-            <p class="mt-6 text-md sm:text-lg leading-8 text-white">Grâce à notre outil, la gestion de tes finances en tant que
+            <p class="mt-6 text-md sm:text-lg leading-8 text-white">Grâce à notre outil, la gestion de tes finances en
+                tant que
                 freelance devient un jeu d'enfant. Organise tes revenus par client et visualise facilement tes gains
                 mensuels</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
                 @if(!auth.user)
                 <a href="/register">
-                <button
-                    class="px-6 py-2 mr-4 font-medium tracking-wide text-white  transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                    Essayez
-                </button>
+                    <button
+                        class="px-6 py-2 mr-4 font-medium tracking-wide text-white  transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                        Essayez
+                    </button>
                 </a>
                 <a href="#more">
-                <button
-                    class="px-6 py-2 mr-4 font-medium tracking-wide text-indigo-600  transition-colors duration-300 transform bg-white rounded-lg hover:bg-gray-200 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                    Découvrir
-                </button></a>
+                    <button
+                        class="px-6 py-2 mr-4 font-medium tracking-wide text-indigo-600  transition-colors duration-300 transform bg-white rounded-lg hover:bg-gray-200 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                        Découvrir
+                    </button></a>
                 @else
                 <button
                     class="px-6 py-2 mr-4 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
@@ -44,9 +45,11 @@
     <!-- Features -->
     <div id="more" class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="aspect-w-16 aspect-h-7">
-            <img class="w-full object-cover rounded-xl"
-                src="/images/presentation.png"
-                alt="présentation dashboard">
+            <video controls>
+                <source src="/images/presentation.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+
         </div>
 
         <!-- Grid -->
@@ -56,7 +59,8 @@
                     Gére ta comptabilité en toute <span class="text-pink-400">simplicité</span>
                 </h2>
                 <p class="mt-2 md:mt-4 text-gray-500">
-                    Libère-toi des tracas de la comptabilité. Notre solution t'offre une interface intuitive pour gérer tes finances sans coût supplémentaire. Profite de fonctionnalités avancées sans payer un centime.
+                    Libère-toi des tracas de la comptabilité. Notre solution t'offre une interface intuitive pour gérer
+                    tes finances sans coût supplémentaire. Profite de fonctionnalités avancées sans payer un centime.
                 </p>
             </div>
             <!-- End Col -->
@@ -78,7 +82,9 @@
                                 Graphiques informatifs
                             </h3>
                             <p class="mt-1 text-gray-600 dark:text-gray-400">
-                                Découvre des graphiques interactifs pour une vision claire de ton activité financière. Identifie rapidement les tendances et prends des décisions éclairées pour booster ta réussite entrepreneuriale.
+                                Découvre des graphiques interactifs pour une vision claire de ton activité financière.
+                                Identifie rapidement les tendances et prends des décisions éclairées pour booster ta
+                                réussite entrepreneuriale.
                             </p>
                         </div>
                     </div>
@@ -97,7 +103,8 @@
                                 Personnalise ton taux de taxe
                             </h3>
                             <p class="mt-1 text-gray-600 dark:text-gray-400">
-                                Choisis le taux de taxe qui te convient le mieux. Notre solution calcule automatiquement le montant brut et net, te donnant une vue claire de ta situation fiscale.
+                                Choisis le taux de taxe qui te convient le mieux. Notre solution calcule automatiquement
+                                le montant brut et net, te donnant une vue claire de ta situation fiscale.
                             </p>
                         </div>
                     </div>
@@ -118,7 +125,9 @@
                                 Vue générale des entrées d'argent
                             </h3>
                             <p class="mt-1 text-gray-600 dark:text-gray-400">
-                                Accède à une vue globale de tes revenus, triés par client et mois. Visualise rapidement ton activité financière et prends des décisions éclairées pour faire prospérer ton entreprise.
+                                Accède à une vue globale de tes revenus, triés par client et mois. Visualise rapidement
+                                ton activité financière et prends des décisions éclairées pour faire prospérer ton
+                                entreprise.
                             </p>
                         </div>
                     </div>
@@ -137,7 +146,9 @@
                                 Historique complet des encaissements
                             </h3>
                             <p class="mt-1 text-gray-600 dark:text-gray-400">
-                               Consulte l'historique complet de tous tes encaissements. Chaque transaction est enregistrée pour une traçabilité totale. Ne perds plus jamais de vue tes transactions passées.
+                                Consulte l'historique complet de tous tes encaissements. Chaque transaction est
+                                enregistrée pour une traçabilité totale. Ne perds plus jamais de vue tes transactions
+                                passées.
                             </p>
                         </div>
                     </div>
