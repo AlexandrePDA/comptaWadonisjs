@@ -111,4 +111,54 @@ export default class DashboardController {
     })
     return view.render('showClients', { clientData: formattedClientData })
   }
+
+  public async showMonth({ view, auth }: HttpContextContract) {
+    const user = await auth.authenticate()
+
+    const clients = await Client.query().where('user_id', user.id)
+
+    const monthlyData = {}
+
+    for (const client of clients) {
+      const month = client.month.toString().slice(0, 7) // Récupère le mois au format "yyyy-mm"
+
+      if (!monthlyData[month]) {
+        monthlyData[month] = {
+          totalSomme: 0,
+          clients: [],
+        }
+      }
+
+      monthlyData[month].totalSomme += client.somme
+      monthlyData[month].clients.push({
+        name: client.name,
+        somme: client.somme,
+      })
+    }
+
+    const formattedData = Object.keys(monthlyData).map((month) => ({
+      month,
+      totalSomme: monthlyData[month].totalSomme,
+      clients: monthlyData[month].clients,
+    }))
+
+    const sortedMonthlyData = formattedData.sort((a, b) => {
+      const [yearA, monthA] = a.month.split('-').map(Number)
+      const [yearB, monthB] = b.month.split('-').map(Number)
+
+      if (yearA !== yearB) {
+        return yearA - yearB
+      }
+
+      return monthA - monthB
+    })
+
+    const formattedMonthlyData = sortedMonthlyData.map((data) => ({
+      month: `${data.month.split('-')[1]}-${data.month.split('-')[0]}`,
+      totalSomme: data.totalSomme,
+      clients: data.clients,
+    }))
+
+    return view.render('showMonth', { monthlyData: formattedMonthlyData })
+  }
 }

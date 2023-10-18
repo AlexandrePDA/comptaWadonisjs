@@ -26,4 +26,5 @@ export default class Client extends BaseModel {
 
   @belongsTo(() => User)
   public user: BelongsTo<typeof User>
+  total: never
 }

@@ -19,7 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import User from 'App/Models/User'
 
 Route.get('/', async ({ view }) => {
   return view.render('home')
@@ -35,13 +34,10 @@ Route.get('/dashboard-data', 'DashboardController.getData').middleware('auth')
 Route.get('/dashboard-dataByMonth', 'DashboardController.byMonth').middleware('auth')
 Route.get('/settings', 'DashboardController.showSettings').middleware('auth')
 Route.get('/showClients', 'DashboardController.showClients').middleware('auth')
+Route.get('/showMonth', 'DashboardController.showMonth').middleware('auth')
 
 Route.post('/addMission', 'ClientsController.addMission').middleware('auth').as('addMission')
 Route.post('/login', 'AuthController.login').as('login')
 Route.post('/register', 'AuthController.register').as('register')
 Route.post('addTax', 'DashboardController.addTax').middleware('auth').as('addTax')
 Route.post('delete', 'DashboardController.delete').middleware('auth').as('delete')
-
-Route.get('/test', async () => {
-  return User.all()
-})

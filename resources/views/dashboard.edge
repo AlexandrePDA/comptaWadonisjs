@@ -8,9 +8,7 @@
     <div class="container mx-auto text-white">
         <h1 class="text-center pt-4 text-2xl">Bienvenue sur ton Dashboard <span class="text-pink-400">{{auth.user.name}}
                 👋🏽</span> </h1>
-        <div class="container mx-auto text-white p-4 flex justify-end">
-
-
+        <div class="container mx-auto text-white p-4 flex justify-center md:justify-end">
             <a href="/showAddMission">
                 <button
                     class="px-6 py-2  font-medium tracking-wide text-white transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 ">
@@ -20,6 +18,7 @@
         </div>
     </div>
 
+    @if(totalClients>0)
     <div class="container w-5/6 h-full mx-auto flex flex-col flex-wrap lg:grid lg:grid-flow-col lg:grid-rows-2 gap-4">
         <div
             class="border-2 rounded-lg flex flex-col items-center justify-center border-slate-800 w-full md:w-5/6 m-4 mx-auto text-white p-4 row-span-3">
@@ -34,7 +33,7 @@
 
         <div
             class="border-2 overflow-hidden rounded-lg flex flex-col items-center justify-center border-slate-800 lg:w-3/4 m-4 mx-auto md:p-4 col-span-2">
-            <a href="#"
+            <a href="/showHistoryGeneral"
                 <button
                     class="px-6 py-2 mb-8 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
                     Derniers encaissements
@@ -99,10 +98,15 @@
             <canvas id="bar"></canvas>
         </div>
     </div>
+    @else
+        <div class="container  h-screen mx-auto flex items-center justify-center text-white p-4 text-center">
+            <p class="text-2xl">Hey <span class="text-pink-400">{{auth.user.name}}</span> ! Ajoute une nouvelle mission pour avoir pleinement accès à ton Dashboard 🚀</p>
+        </div>
+    @end
 
     @if(totalClients !== 0)
     <div
-        class="border-2 rounded-lg flex  items-center justify-between border-slate-800 w-full md:w-2/3 m-4 mx-auto text-white p-4">
+        class="border-2 rounded-lg flex flex-col md:flex-row items-center justify-between border-slate-800 w-full md:w-2/3 m-4 mx-auto text-white p-4">
         <p>🚨 Récapitulatif </p>
         <p>Clients : <span class="text-pink-400">{{totalClients}}</span> </p>
         <p>Somme brut : <span class="text-pink-400">{{totalSomme}} €</span> </p>
