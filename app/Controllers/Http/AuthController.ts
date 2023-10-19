@@ -32,18 +32,28 @@ export default class AuthController {
     return view.render('dashboard', { user, clients, ...lastClient, totalClients, totalSomme })
   }
 
-  public async login({ auth, request, response }: HttpContextContract) {
-    const { email, password } = request.all()
-    await auth.attempt(email, password)
-    if (auth.user) {
-      return response.redirect().toRoute('dashboard')
+  public async login({ view, auth, request, response }: HttpContextContract) {
+    try {
+      const { email, password } = request.all()
+      await auth.attempt(email, password)
+      if (auth.user) {
+        return response.redirect().toRoute('dashboard')
+      }
+    } catch (error) {
+      const err = 'error'
+      return view.render('auth/login', { err })
     }
   }
 
-  public async register({ request, response }: HttpContextContract) {
-    const payload = await request.validate(CreateUserValidator)
-    await User.create(payload)
-    return response.redirect().toRoute('login')
+  public async register({ view, request, response }: HttpContextContract) {
+    try {
+      const payload = await request.validate(CreateUserValidator)
+      await User.create(payload)
+      return response.redirect().toRoute('login')
+    } catch (error) {
+      const err = 'error'
+      return view.render('auth/register', { err })
+    }
   }
 
   public async logout({ auth, response }: HttpContextContract) {

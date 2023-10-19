@@ -5,7 +5,7 @@
 <div class="w-max-3xl min-h-screen mx-auto bg-slate-950 flex justify-center items-center">
     <div class="container mx-auto text-white p-4">
         <div class="w-full max-w-sm p-6 m-auto mx-auto  rounded-lg shadow-md bg-gray-800">
-            <h2 class="text-center text-xl">Paramètre ⚙️</h2>
+            <h2 class="text-center text-xl">Paramètres</h2>
             <p class="p-4 text-gray-400 text-center">Modifie ton % de taxe pour pouvoir calculer tes revenus brut et net
             </p>
 
@@ -21,7 +21,7 @@
             <form action="{{route('addTax')}}" method="POST" class="mt-6">
                 <div>
                     <label for="taxe" class="block text-sm  text-gray-200">% Taxe</label>
-                    <input type="number" placeholder="21.5" name="taxe" step="0.01"
+                    <input type="number" placeholder="21.5" name="taxe" step="0.01" required
                         class="block w-full px-4 py-2 mt-2   border rounded-lg bg-gray-800 text-gray-300 border-gray-600  focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
                 <div class="mt-6">
@@ -46,7 +46,7 @@
                 </div>
 
                 @if(error !== undefined )
-                <div class="flex mt-4 w-full max-w-sm overflow-hidden rounded-lg shadow-md bg-gray-800">
+                <div class="flex mt-4 w-full max-w-sm overflow-hidden rounded-lg shadow-md bg-white">
                     <div class="flex items-center justify-center w-12 bg-red-500">
                         <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40"
                             xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@
                     <div class="px-4 py-2 -mx-3">
                         <div class="mx-3">
                             <span class="font-semibold  text-red-400">Erreur</span>
-                            <p class="text-sm text-gray-200">
+                            <p class="text-sm text-slate-900">
                                 Saisie incorrect
                             </p>
                         </div>

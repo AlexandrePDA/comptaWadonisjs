@@ -9,7 +9,7 @@
         <h1 class="text-center md:pt-12 pt-16 px-4 text-2xl">Bienvenue sur ton Dashboard <span
                 class="text-pink-400">{{auth.user.name}}
                 👋🏽</span> </h1>
-        <div class="container mx-auto text-white p-4 flex justify-center md:justify-end">
+        <div class="container mx-auto text-white p-4 flex justify-center ">
             <a href="/showAddMission">
                 <button
                     class="px-6 py-2  font-medium tracking-wide text-white transition-colors duration-300 transform bg-indigo-600 rounded-lg hover:bg-blue-500 ">
@@ -20,10 +20,10 @@
     </div>
 
     @if(totalClients>0)
-    <div class="container p-4  mx-auto flex flex-col lg:flex-row w-full">
+    <div class="container p-4  mx-auto flex flex-col lg:flex-row w-full h-full ">
         <div class="lg:w-1/2 flex items-center justify-center">
             <div
-                class="border-2 rounded-lg flex flex-col items-center justify-between border-slate-800 w-full md:w-5/6 m-4 mx-auto text-white p-4 row-span-3">
+                class="border-2 rounded-lg flex flex-col items-center justify-between border-slate-800 w-full md:w-5/6 m-4 mx-auto text-white p-4">
                 <a href="/showClients">
                     <button
                         class="px-6 py-2 mb-12 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
@@ -35,16 +35,15 @@
         </div>
 
 
-        <div class=" lg:w-1/2">
-
-            <div
-                class="border-2 overflow-hidden rounded-lg flex flex-col items-center justify-between border-slate-800 w-full lg:w-3/4 mx-auto p-4 col-span-2">
+        <div class="lg:w-1/2">
+           <div
+                class="border-2 overflow-hidden overflow-x-auto rounded-lg flex flex-col items-center justify-between border-slate-800 w-full lg:w-3/4 mx-auto p-4 col-span-2">
                 <a href="/showHistoryGeneral" <button
                     class="px-6 py-2 mb-4 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
                     Derniers encaissements
                     </button>
                 </a>
-                <div class="overflow-hidden border w-full border-gray-700 md:rounded-lg">
+                <div class="overflow-hidden border w-full border-gray-700 rounded-lg">
                     <table class="min-w-full divide-y divide-gray-700">
                         <thead class="bg-gray-800">
                             <tr>
@@ -93,21 +92,25 @@
                     </table>
                 </div>
             </div>
-        <div
-            class="border-2 rounded-lg flex flex-col items-center justify-between border-slate-800 w-full lg:w-3/4 m-4 mx-auto text-white p-4 col-span-2 row-span-2">
-            <a href="/showHistoryGeneral">
-                <button
-                    class="px-6 py-2 mb-12 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
-                    Encaissement par mois
-                </button>
-            </a>
-            <canvas id="bar"></canvas>
-        </div>
+
+
+
+            <div
+                class="border-2 rounded-lg flex flex-col items-center justify-between border-slate-800 w-full lg:w-3/4 m-4 mx-auto text-white p-4 ">
+                <a href="/showHistoryGeneral">
+                    <button
+                        class="px-6 py-2 mb-12 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
+                        Encaissement par mois
+                    </button>
+                </a>
+                <canvas id="bar"></canvas>
+            </div>
         </div>
     </div>
     @else
     <div class="container  h-screen mx-auto flex items-center justify-center text-white p-4 text-center">
-        <p class="text-2xl">Hey <span class="text-pink-400">{{auth.user.name}}</span> ! Ajoute une nouvelle mission pour
+        <p class="text-2xl">Hey <span class="text-pink-400">{{auth.user.name}}</span> ! Ajoute une nouvelle mission
+            pour
             avoir pleinement accès à ton Dashboard 🚀</p>
     </div>
     @end
