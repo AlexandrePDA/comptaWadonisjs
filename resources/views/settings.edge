@@ -1,0 +1,79 @@
+@layout('app')
+@section('content')
+
+
+<div class="w-max-3xl min-h-screen mx-auto bg-slate-950 flex justify-center items-center">
+    <div class="container mx-auto text-white p-4">
+        <div class="w-full max-w-sm p-6 m-auto mx-auto  rounded-lg shadow-md bg-gray-800">
+            <h2 class="text-center text-xl">Paramètres</h2>
+            
+            <p class="p-4 text-gray-400 text-center">Modifie ton taux de cotisations pour calculer tes revenus bruts et nets
+            </p>
+            @if (auth.user.taxe !== null)
+            <p class="text-sm">Taux actuel : <span class="text-pink-400">{{auth.user.taxe}}</span>  %</p>
+
+            @endif
+
+
+
+            <form action="{{route('addTax')}}" method="POST" class="mt-6">
+                <div>
+                    <label for="taxe" class="block text-sm  text-gray-200">Nouveau taux (%)</label>
+                    <input type="number" placeholder="21.5" name="taxe" step="0.01" required
+                        class="block w-full px-4 py-2 mt-2   border rounded-lg bg-gray-800 text-gray-300 border-gray-600  focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                </div>
+                <div class="mt-6">
+                    <button type="submit"
+                        class="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                        Confirmer
+                    </button>
+                </div>
+            </form>
+
+            <div class="flex items-center justify-between mt-4">
+                <span class="w-1/5 border-b border-gray-400 lg:w-full"></span>
+            </div>
+
+
+            <form action="{{route('delete')}}" method="POST" class="mt-6">
+                <div>
+                    <label for="delete" class="block text-sm text-gray-200">Pour supprimer ton compte, écris <span
+                            class="text-red-400">supprimer/{{ auth.user.name }}</span></label>
+                    <input type="text" name="delete" required
+                        class="block w-full px-4 py-2 mt-2 border rounded-lg bg-gray-800 text-gray-300 border-gray-600 focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" />
+                </div>
+
+                @if(error !== undefined )
+                <div class="flex mt-4 w-full max-w-sm overflow-hidden rounded-lg shadow-md bg-white">
+                    <div class="flex items-center justify-center w-12 bg-red-500">
+                        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M20 3.36667C10.8167 3.36667 3.3667 10.8167 3.3667 20C3.3667 29.1833 10.8167 36.6333 20 36.6333C29.1834 36.6333 36.6334 29.1833 36.6334 20C36.6334 10.8167 29.1834 3.36667 20 3.36667ZM19.1334 33.3333V22.9H13.3334L21.6667 6.66667V17.1H27.25L19.1334 33.3333Z" />
+                        </svg>
+                    </div>
+
+                    <div class="px-4 py-2 -mx-3">
+                        <div class="mx-3">
+                            <span class="font-semibold  text-red-400">Erreur</span>
+                            <p class="text-sm text-slate-900">
+                                Saisie incorrect
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @else <p></p>
+                @endif
+
+                <div class="mt-6">
+                    <button type="submit"
+                        class="w-full px-6 py-2.5 text-sm font-medium tracking-wide text-white transition-colors duration-300 transform bg-red-500 rounded-lg hover:bg-red-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50">
+                        Supprimer le compte
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@end
