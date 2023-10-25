@@ -11,15 +11,18 @@ export default class DashboardController {
     const accumulatedData = new Map<string, number>()
     clients.forEach((client) => {
       const key = client.name
+      // Convertir la somme en flottant avant de l'additionner
+      const clientSum = parseFloat(client.somme.toString())
       if (accumulatedData.has(key)) {
-        accumulatedData.set(key, accumulatedData.get(key)! + client.somme)
+        accumulatedData.set(key, (accumulatedData.get(key) ?? 0) + clientSum)
       } else {
-        accumulatedData.set(key, client.somme)
+        accumulatedData.set(key, clientSum)
       }
     })
-    // Prepare labels and dataValues from accumulated data
+    console.log(accumulatedData)
     const labels = Array.from(accumulatedData.keys())
     const dataValues = Array.from(accumulatedData.values())
+    console.log('****', labels, dataValues)
     return response.json({ labels, dataValues })
   }
 
