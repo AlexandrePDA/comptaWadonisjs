@@ -26,9 +26,16 @@ export default class AuthController {
         somme: client.somme,
       }
     })
+    const sommeTotale = await Client.query()
+      .where('user_id', user.id)
+      .sum('somme as totalSomme')
+      .first()
+    let totalSomme = 0 // Initialiser à 0 au cas où sommeTotale ne serait pas défini
+    if (sommeTotale && sommeTotale.$extras && sommeTotale.$extras.totalSomme) {
+      totalSomme = parseFloat(sommeTotale.$extras.totalSomme)
+    }
     const lastClient = { lastClient: formattedClients }
     const totalClients = clients.length
-    const totalSomme = clients.reduce((acc, client) => acc + client.somme, 0)
     return view.render('dashboard', { user, clients, ...lastClient, totalClients, totalSomme })
   }
 
@@ -48,6 +55,7 @@ export default class AuthController {
   public async register({ view, request, response }: HttpContextContract) {
     try {
       const payload = await request.validate(CreateUserValidator)
+      payload.email = payload.email.toLowerCase()
       await User.create(payload)
       return response.redirect().toRoute('login')
     } catch (error) {

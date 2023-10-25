@@ -17,7 +17,14 @@ export default class ClientsController {
     const user = await auth.authenticate()
     const clients = await Client.query().where('user_id', user.id)
     const totalClients = clients.length
-    const totalSomme = clients.reduce((acc, client) => acc + client.somme, 0)
+    const sommeTotale = await Client.query()
+      .where('user_id', user.id)
+      .sum('somme as totalSomme')
+      .first()
+    let totalSomme = 0 // Initialiser à 0 au cas où sommeTotale ne serait pas défini
+    if (sommeTotale && sommeTotale.$extras && sommeTotale.$extras.totalSomme) {
+      totalSomme = parseFloat(sommeTotale.$extras.totalSomme)
+    }
     const reversedClients = clients.slice().reverse()
 
     const formattedClients = reversedClients.map((client) => {

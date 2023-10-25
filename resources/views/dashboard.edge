@@ -97,7 +97,7 @@
 
             <div
                 class="border-2 rounded-lg flex flex-col items-center justify-between border-slate-800 w-full lg:w-3/4 m-4 mx-auto text-white p-4 ">
-                <a href="/showHistoryGeneral">
+                <a href="/showMonth">
                     <button
                         class="px-6 py-2 mb-12 font-medium tracking-wide text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-600 ">
                         Encaissement par mois
@@ -120,7 +120,7 @@
         class="border-2 rounded-lg flex flex-col md:flex-row items-center justify-between border-slate-800 w-5/6 lg:w-2/3 m-4 mx-auto text-white p-4">
         <p>🚨 Récapitulatif </p>
         <p>Clients : <span class="text-pink-400">{{totalClients}}</span> </p>
-        <p>Somme brut : <span class="text-pink-400">{{totalSomme}} €</span> </p>
+        <p>Somme brut : <span class="text-pink-400">{{totalSomme.toFixed(2)}} €</span> </p>
         @if(auth.user.taxe == null)
         <a href="/settings">
             <button
@@ -129,7 +129,7 @@
             </button>
         </a>
         @else
-        <p>Somme net : <span class="text-pink-400">{{totalSomme-(totalSomme * (auth.user.taxe/100))}} €</span></p>
+        <p>Somme net : <span class="text-pink-400">{{ (totalSomme - (totalSomme * (auth.user.taxe/100))).toFixed(2) }} €</span></p>
         @end
     </div>
     @endif

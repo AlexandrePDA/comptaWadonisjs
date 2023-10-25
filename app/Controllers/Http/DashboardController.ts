@@ -28,17 +28,22 @@ export default class DashboardController {
     const clients = await Client.query().where('user_id', user.id)
 
     const accumulatedData = new Map<string, number>()
+    let totalSomme = 0
 
     clients.forEach((client) => {
       const date = new Date(client.month)
       const monthYear = `${date.getMonth() + 1}/${date.getFullYear()}`
       const key = monthYear
 
+      const somme = client.somme
+
       if (accumulatedData.has(key)) {
-        accumulatedData.set(key, accumulatedData.get(key)! + client.somme)
+        accumulatedData.set(key, accumulatedData.get(key)! + somme)
       } else {
-        accumulatedData.set(key, client.somme)
+        accumulatedData.set(key, (accumulatedData.get(key) || 0) + somme)
       }
+
+      totalSomme += somme
     })
 
     // Créer une fonction de comparaison pour trier les dates
@@ -53,8 +58,7 @@ export default class DashboardController {
 
     // Générer les dataValues en fonction des labels triés
     const sortedDataValues = sortedKeys.map((label) => accumulatedData.get(label)!)
-
-    return response.json({ labels: sortedKeys, dataValues: sortedDataValues })
+    return response.json({ labels: sortedKeys, dataValues: sortedDataValues, totalSomme })
   }
 
   public showSettings({ view }: HttpContextContract) {
@@ -114,51 +118,68 @@ export default class DashboardController {
 
   public async showMonth({ view, auth }: HttpContextContract) {
     const user = await auth.authenticate()
-
     const clients = await Client.query().where('user_id', user.id)
 
     const monthlyData = {}
 
     for (const client of clients) {
-      const month = client.month.toString().slice(0, 7) // Récupère le mois au format "yyyy-mm"
+      const monthKey = client.month.toString().slice(0, 7)
 
-      if (!monthlyData[month]) {
-        monthlyData[month] = {
+      if (!monthlyData[monthKey]) {
+        monthlyData[monthKey] = {
           totalSomme: 0,
           clients: [],
         }
       }
 
-      monthlyData[month].totalSomme += client.somme
-      monthlyData[month].clients.push({
+      const somme = client.somme
+
+      monthlyData[monthKey].totalSomme += somme
+      monthlyData[monthKey].clients.push({
         name: client.name,
-        somme: client.somme,
+        somme: somme,
       })
     }
 
-    const formattedData = Object.keys(monthlyData).map((month) => ({
-      month,
-      totalSomme: monthlyData[month].totalSomme,
-      clients: monthlyData[month].clients,
-    }))
+    const dateByMonth = {}
 
-    const sortedMonthlyData = formattedData.sort((a, b) => {
-      const [yearA, monthA] = a.month.split('-').map(Number)
-      const [yearB, monthB] = b.month.split('-').map(Number)
+    for (const monthKey in monthlyData) {
+      if (Object.prototype.hasOwnProperty.call(monthlyData, monthKey)) {
+        const clients = monthlyData[monthKey].clients
+        let totalSomme = 0
 
-      if (yearA !== yearB) {
-        return yearA - yearB
+        for (const client of clients) {
+          const somme = parseFloat(client.somme)
+          totalSomme += somme
+        }
+
+        if (!dateByMonth[monthKey]) {
+          dateByMonth[monthKey] = []
+        }
+
+        dateByMonth[monthKey].push({
+          clients: clients,
+          totalSomme: totalSomme.toFixed(2), // Arrondir à deux décimales
+        })
       }
+    }
+    console.log(dateByMonth) // OK JUSQUICI
 
-      return monthA - monthB
-    })
+    const transformedData = {}
 
-    const formattedMonthlyData = sortedMonthlyData.map((data) => ({
-      month: `${data.month.split('-')[1]}-${data.month.split('-')[0]}`,
-      totalSomme: data.totalSomme,
-      clients: data.clients,
-    }))
+    for (const monthKey in dateByMonth) {
+      if (Object.prototype.hasOwnProperty.call(dateByMonth, monthKey)) {
+        const totalSomme = dateByMonth[monthKey][0].totalSomme
+        const clients = dateByMonth[monthKey][0].clients
 
-    return view.render('showMonth', { monthlyData: formattedMonthlyData })
+        transformedData[monthKey] = {
+          date: monthKey,
+          clients: clients,
+          totalSomme: totalSomme,
+        }
+      }
+    }
+    console.log(transformedData)
+    return view.render('showMonth', { transformedData })
   }
 }
